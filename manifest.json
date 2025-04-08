@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "CosmosDB _ts Converter",
+  "short_name": "TS Convert",
+  "version": "1.0.0",
+  "description": "Converts Azure Cosmos DB _ts timestamps to human-readable IST format directly in the Azure portal",
+  "icons": {
+    "16": "time-37-16.png",
+    "32": "time-37-32.png",
+    "128": "time-37-128.png",
+    "512": "time-37-512.png"
+  },
+  "action": {
+    "default_icon": {
+      "16": "time-37-16.png",
+      "32": "time-37-32.png"
+    },
+    "default_popup": "popup.html"
+  },
+  "author": "Shravan MR",
+  "minimum_chrome_version": "88",
+  "permissions": ["activeTab", "storage", "clipboardRead", "contextMenus", "scripting"],
+  "host_permissions": ["*://*.portal.azure.com/*", "*://portal.azure.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.portal.azure.com/*", "*://portal.azure.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  }
+}
